@@ -1,0 +1,252 @@
+{
+  "cat_by_inst": [
+    {
+      "institution": "BlackRock",
+      "category": "SECTION 14A SAY-ON-PAY VOTES",
+      "dissent_pct": 0.32,
+      "total": 3768
+    },
+    {
+      "institution": "StateStreet",
+      "category": "HUMAN RIGHTS OR HUMAN CAPITAL/WORKFORCE",
+      "dissent_pct": 100.0,
+      "total": 47
+    },
+    {
+      "institution": "StateStreet",
+      "category": "ENVIRONMENT OR CLIMATE",
+      "dissent_pct": 91.5,
+      "total": 294
+    },
+    {
+      "institution": "StateStreet",
+      "category": "DIVERSITY, EQUITY, AND INCLUSION",
+      "dissent_pct": 81.4,
+      "total": 43
+    },
+    {
+      "institution": "StateStreet",
+      "category": "OTHER",
+      "dissent_pct": 66.35,
+      "total": 731
+    },
+    {
+      "institution": "StateStreet",
+      "category": "SHAREHOLDER RIGHTS AND DEFENSES",
+      "dissent_pct": 27.59,
+      "total": 232
+    },
+    {
+      "institution": "StateStreet",
+      "category": "OTHER SOCIAL ISSUES",
+      "dissent_pct": 24.44,
+      "total": 405
+    },
+    {
+      "institution": "StateStreet",
+      "category": "DIRECTOR ELECTIONS",
+      "dissent_pct": 8.01,
+      "total": 38155
+    },
+    {
+      "institution": "StateStreet",
+      "category": "CORPORATE GOVERNANCE",
+      "dissent_pct": 3.8,
+      "total": 20230
+    },
+    {
+      "institution": "StateStreet",
+      "category": "AUDIT-RELATED",
+      "dissent_pct": 2.47,
+      "total": 5028
+    },
+    {
+      "institution": "StateStreet",
+      "category": "COMPENSATION",
+      "dissent_pct": 2.04,
+      "total": 11227
+    },
+    {
+      "institution": "StateStreet",
+      "category": "CAPITAL STRUCTURE",
+      "dissent_pct": 0.4,
+      "total": 13920
+    },
+    {
+      "institution": "StateStreet",
+      "category": "EXTRAORDINARY TRANSACTIONS",
+      "dissent_pct": 0.2,
+      "total": 1532
+    },
+    {
+      "institution": "StateStreet",
+      "category": "SECTION 14A SAY-ON-PAY VOTES",
+      "dissent_pct": 0.0,
+      "total": 595
+    },
+    {
+      "institution": "StateStreet",
+      "category": "INVESTMENT COMPANY MATTERS",
+      "dissent_pct": 0.0,
+      "total": 6
+    },
+    {
+      "institution": "Vanguard",
+      "category": "OTHER SOCIAL ISSUES",
+      "dissent_pct": 100.0,
+      "total": 9
+    },
+    {
+      "institution": "Vanguard",
+      "category": "HUMAN RIGHTS OR HUMAN CAPITAL/WORKFORCE",
+      "dissent_pct": 100.0,
+      "total": 5
+    },
+    {
+      "institution": "Vanguard",
+      "category": "ENVIRONMENT OR CLIMATE",
+      "dissent_pct": 100.0,
+      "total": 17
+    },
+    {
+      "institution": "Vanguard",
+      "category": "DIVERSITY, EQUITY, AND INCLUSION",
+      "dissent_pct": 100.0,
+      "total": 4
+    },
+    {
+      "institution": "Vanguard",
+      "category": "OTHER",
+      "dissent_pct": 16.67,
+      "total": 6
+    },
+    {
+      "institution": "Vanguard",
+      "category": "SHAREHOLDER RIGHTS AND DEFENSES",
+      "dissent_pct": 9.09,
+      "total": 99
+    },
+    {
+      "institution": "Vanguard",
+      "category": "CORPORATE GOVERNANCE",
+      "dissent_pct": 5.93,
+      "total": 1029
+    },
+    {
+      "institution": "Vanguard",
+      "category": "DIRECTOR ELECTIONS",
+      "dissent_pct": 3.62,
+      "total": 18014
+    },
+    {
+      "institution": "Vanguard",
+      "category": "EXTRAORDINARY TRANSACTIONS",
+      "dissent_pct": 1.92,
+      "total": 261
+    },
+    {
+      "institution": "Vanguard",
+      "category": "COMPENSATION",
+      "dissent_pct": 0.76,
+      "total": 1178
+    },
+    {
+      "institution": "Vanguard",
+      "category": "CAPITAL STRUCTURE",
+      "dissent_pct": 0.51,
+      "total": 985
+    },
+    {
+      "institution": "Vanguard",
+      "category": "SECTION 14A SAY-ON-PAY VOTES",
+      "dissent_pct": 0.0,
+      "total": 2629
+    },
+    {
+      "institution": "Vanguard",
+      "category": "INVESTMENT COMPANY MATTERS",
+      "dissent_pct": 0.0,
+      "total": 2
+    },
+    {
+      "institution": "Vanguard",
+      "category": "AUDIT-RELATED",
+      "dissent_pct": 0.0,
+      "total": 3226
+    }
+  ],
+  "inst_overall": [
+    {
+      "institution": "BlackRock",
+      "total": 3768,
+      "dissent_pct": 0.32
+    },
+    {
+      "institution": "StateStreet",
+      "total": 92445,
+      "dissent_pct": 5.66
+    },
+    {
+      "institution": "Vanguard",
+      "total": 27464,
+      "dissent_pct": 2.83
+    }
+  ],
+  "vote_breakdown": [
+    {
+      "institution": "BlackRock",
+      "how_voted": "FOR",
+      "n": 3207
+    },
+    {
+      "institution": "BlackRock",
+      "how_voted": "AGAINST",
+      "n": 561
+    },
+    {
+      "institution": "StateStreet",
+      "how_voted": "FOR",
+      "n": 79408
+    },
+    {
+      "institution": "StateStreet",
+      "how_voted": "AGAINST",
+      "n": 10609
+    },
+    {
+      "institution": "StateStreet",
+      "how_voted": "ABSTAIN",
+      "n": 2202
+    },
+    {
+      "institution": "StateStreet",
+      "how_voted": "WITHHOLD",
+      "n": 226
+    },
+    {
+      "institution": "Vanguard",
+      "how_voted": "FOR",
+      "n": 26103
+    },
+    {
+      "institution": "Vanguard",
+      "how_voted": "AGAINST",
+      "n": 719
+    },
+    {
+      "institution": "Vanguard",
+      "how_voted": "WITHHOLD",
+      "n": 640
+    },
+    {
+      "institution": "Vanguard",
+      "how_voted": "ABSTAIN",
+      "n": 2
+    }
+  ],
+  "exec_pay_by_inst": {
+    "BlackRock": 14.9,
+    "StateStreet": 7.2,
+    "Vanguard": 3.1
+  }
+}
