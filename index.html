@@ -9,144 +9,218 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0d1117;--surface:#161b22;--surface2:#1f2937;--border:#30363d;--border2:#21262d;--text:#e6edf3;--text2:#8b949e;--text3:#656d76;--blue:#3b82f6;--green:#10b981;--amber:#f59e0b;--red:#f85149}
+:root{
+  --bg:#0d1117;--surface:#161b22;--surface2:#1f2937;
+  --border:#30363d;--border2:#21262d;
+  --text:#e6edf3;--text2:#8b949e;--text3:#656d76;
+  --blue:#3b82f6;--green:#10b981;--amber:#f59e0b;--red:#f85149;--purple:#a78bfa;
+}
 body{background:var(--bg);color:var(--text);font-family:'Fira Sans',system-ui,sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
 a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
 .wrap{max-width:1200px;margin:0 auto;padding:2rem 1.5rem 4rem}
-.header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
-.header-left h1{font-size:20px;font-weight:600;letter-spacing:-.3px;margin-bottom:4px}
-.header-left p{font-size:13px;color:var(--text2)}
-.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:5px 12px;border-radius:6px;border:1px solid var(--border);color:var(--text2);background:var(--surface);cursor:pointer;transition:border-color .2s,color .2s;text-decoration:none}
-.badge:hover{border-color:var(--blue);color:var(--blue)}
-.badge svg{width:14px;height:14px}
-.tag{font-size:11px;padding:2px 10px;border-radius:20px;background:rgba(59,130,246,.12);color:#93c5fd;border:1px solid rgba(59,130,246,.2)}
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem}
+
+/* Header */
+.header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
+.header h1{font-size:20px;font-weight:600;letter-spacing:-.3px;margin-bottom:4px}
+.header p{font-size:13px;color:var(--text2)}
+.gh-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:5px 12px;border-radius:6px;border:1px solid var(--border);color:var(--text2);background:var(--surface);text-decoration:none;transition:border-color .2s,color .2s;white-space:nowrap}
+.gh-link:hover{border-color:var(--blue);color:var(--blue)}
+.gh-link svg{width:14px;height:14px;flex-shrink:0}
+
+/* Slicer */
+.slicer{display:flex;align-items:center;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap}
+.slicer-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;font-weight:500;margin-right:4px}
+.pill{border:1px solid var(--border);background:var(--surface);color:var(--text2);font-size:13px;padding:6px 16px;border-radius:20px;cursor:pointer;font-family:'Fira Sans',sans-serif;transition:all .18s;display:flex;align-items:center;gap:7px}
+.pill:hover{border-color:var(--text2)}
+.pill.active{border-color:transparent;color:#fff;font-weight:500}
+.pill-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pill[data-inst="All"].active{background:#334155;border-color:#475569;color:var(--text)}
+.pill[data-inst="BlackRock"].active{background:rgba(59,130,246,.2);border-color:var(--blue);color:var(--blue)}
+.pill[data-inst="StateStreet"].active{background:rgba(16,185,129,.2);border-color:var(--green);color:var(--green)}
+.pill[data-inst="Vanguard"].active{background:rgba(245,158,11,.2);border-color:var(--amber);color:var(--amber)}
+
+/* KPI grid */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.25rem}
 .kpi{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:1rem 1.25rem;transition:border-color .2s}
 .kpi:hover{border-color:var(--border)}
 .kpi-label{font-size:11px;color:var(--text3);margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
-.kpi-value{font-size:28px;font-weight:600;font-family:'Fira Code',monospace;line-height:1}
+.kpi-value{font-size:26px;font-weight:600;font-family:'Fira Code',monospace;line-height:1;transition:color .2s}
 .kpi-sub{font-size:11px;color:var(--text2);margin-top:5px}
-.blue .kpi-value{color:var(--blue)}.amber .kpi-value{color:var(--amber)}.green .kpi-value{color:var(--green)}.red .kpi-value{color:var(--red)}
-.finding-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.5rem}
-.finding{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:1rem;border-left:3px solid var(--blue)}
-.finding.amber{border-left-color:var(--amber)}.finding.green{border-left-color:var(--green)}
-.f-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:5px;font-weight:500}
-.f-value{font-size:18px;font-weight:600;font-family:'Fira Code',monospace;margin-bottom:4px}
-.finding.blue .f-value{color:var(--blue)}.finding.amber .f-value{color:var(--amber)}.finding.green .f-value{color:var(--green)}
-.f-desc{font-size:12px;color:var(--text2);line-height:1.5}
-.chart-row{display:grid;grid-template-columns:3fr 2fr;gap:16px;margin-bottom:16px}
+.kpi-note{font-size:11px;margin-top:5px;font-family:'Fira Code',monospace;font-weight:500}
+
+/* Chart layout */
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .chart-full{margin-bottom:16px}
-.chart-row-half{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:1.25rem}
-.card-title{font-size:11px;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;font-weight:500;margin-bottom:1rem}
-.toggle-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.toggle-group{display:flex;gap:4px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:3px}
-.toggle-btn{border:none;background:transparent;color:var(--text2);font-size:12px;padding:4px 12px;border-radius:5px;cursor:pointer;font-family:'Fira Sans',sans-serif;transition:background .15s,color .15s}
-.toggle-btn.active{background:var(--surface2);color:var(--text)}
-.legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px}
-.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2)}
-.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.card-title{font-size:11px;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;font-weight:500;margin-bottom:.75rem}
 .chart-wrap{position:relative;width:100%}
-.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
-.model-kpi{background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:.75rem 1rem}
-.model-kpi-label{font-size:11px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
-.model-kpi-val{font-size:20px;font-weight:600;font-family:'Fira Code',monospace;color:var(--blue)}
-.insight{border-top:1px solid var(--border2);padding-top:1rem;margin-top:.25rem}
-.insight-title{font-size:12px;font-weight:600;margin-bottom:.5rem}
+
+/* Toggle */
+.row-between{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
+.toggle-group{display:flex;gap:3px;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:3px}
+.tbtn{border:none;background:transparent;color:var(--text2);font-size:12px;padding:4px 11px;border-radius:5px;cursor:pointer;font-family:'Fira Sans',sans-serif;transition:all .15s}
+.tbtn.active{background:var(--surface2);color:var(--text)}
+
+/* Legend */
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px}
+.li{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2)}
+.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* Notice banner */
+.notice{font-size:12px;color:var(--text3);background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:8px 12px;margin-bottom:12px;display:none}
+
+/* Model section */
+.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:.75rem}
+.mkpi{background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:.w rem 1rem}
+.mkpi padding:{.7rem 1rem}
+.mkpi-label{font-size:11px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.mkpi-val{font-size:20px;font-weight:600;font-family:'Fira Code',monospace;color:var(--blue)}
+.insight{border-top:1px solid var(--border2);padding-top:.9rem}
 .insight p{font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:.5rem}
 .insight p:last-child{margin-bottom:0}
 .hl{color:var(--amber);font-family:'Fira Code',monospace}
+
+/* Footer */
 .footer{text-align:center;font-size:12px;color:var(--text3);margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border2)}
-@media(max-width:768px){.kpi-grid,.finding-strip,.chart-row,.chart-row-half{grid-template-columns:1fr}.header{flex-direction:column;gap:1rem}}
+
+@media(max-width:768px){
+  .kpi-grid,.chart-row{grid-template-columns:repeat(2,1fr)}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .header{flex-direction:column
+gap:1rem}
+  .slicer{gap:6px}
+}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
+
+<!-- Header -->
 <header class="header">
-  <div class="header-left">
+  <div>
     <h1>Institutional Proxy Voting Divergence</h1>
     <p>SEC EDGAR mandatory N-PX filings &nbsp;·&nbsp; 2025 (first structured XML year) &nbsp;·&nbsp; 3 institutions &nbsp;·&nbsp; 9,798 companies</p>
   </div>
-  <div style="display:flex;align-items:center;gap:10px">
-    <span class="tag">Vanguard · BlackRock · State Street</span>
-    <a href="https://github.com/Kamran06/proxy-voting-analysis" class="badge" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-      GitHub
-    </a>
-  </div>
+  <a href="https://github.com/Kamran06/proxy-voting-analysis" class="gh-link" target="_blank" rel="noopener" aria-label="View on GitHub">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+    GitHub
+  </a>
 </header>
 
-<div class="kpi-grid">
-  <div class="kpi blue"><div class="kpi-label">Total votes</div><div class="kpi-value">123,677</div><div class="kpi-sub">across 9,798 companies</div></div>
-  <div class="kpi amber"><div class="kpi-label">Overall dissent rate</div><div class="kpi-value">4.87%</div><div class="kpi-sub">voted against mgmt</div></div>
-  <div class="kpi green"><div class="kpi-label">Model ROC-AUC</div><div class="kpi-value">0.798</div><div class="kpi-sub">logistic regression · 29 features</div></div>
-  <div class="kpi red"><div class="kpi-label">Climate dissent</div><div class="kpi-value">91.96%</div><div class="kpi-sub">vs. mgmt on climate proposals</div></div>
+<!-- Slicer -->
+<div class="slicer" role="group" aria-label="Filter by institution">
+  <span class="slicer-label">Institution</span>
+  <button class="pill active" data-inst="All" onclick="setInst('All')">
+    <span class="pill-dot" style="background:#475569"></span>All institutions
+  </button>
+  <button class="pill" data-inst="BlackRock" onclick="setInst('BlackRock')">
+    <span class="pill-dot" style="background:#3b82f6"></span>BlackRock
+  </button>
+  <button class="pill" data-inst="StateStreet" onclick="setInst('StateStreet')">
+    <span class="pill-dot" style="background:#10b981"></span>State Street
+  </button>
+  <button class="pill" data-inst="Vanguard" onclick="setInst('Vanguard')">
+    <span class="pill-dot" style="background:#f59e0b"></span>Vanguard
+  </button>
 </div>
 
-<div class="finding-strip">
-  <div class="finding blue"><div class="f-label">Biggest exec-pay hawk</div><div class="f-value">BlackRock 14.9%</div><div class="f-desc">AGAINST rate on say-on-pay — 4.8× higher than Vanguard's 3.1%</div></div>
-  <div class="finding amber"><div class="f-label">Human rights proposals</div><div class="f-value">100% dissent</div><div class="f-desc">Every institution voted FOR shareholder resolutions that management opposed</div></div>
-  <div class="finding green"><div class="f-label">Strongest predictor</div><div class="f-value">Proposal category</div><div class="f-desc">Say-on-pay → alignment (−0.98 log-odds). Climate/ESG → dissent</div></div>
+<!-- KPI cards -->
+<div class="kpi-grid" role="region" aria-label="Key metrics" aria-live="polite">
+  <div class="kpi">
+    <div class="kpi-label">Total votes</div>
+    <div class="kpi-value" id="kpi-votes" style="color:var(--blue)">123,677</div>
+    <div class="kpi-sub" id="kpi-votes-sub">across 9,798 companies</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Dissent rate</div>
+    <div class="kpi-value" id="kpi-dissent" style="color:var(--amber)">4.87%</div>
+    <div class="kpi-sub">voted against mgmt recommendation</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Climate dissent</div>
+    <div class="kpi-value" id="kpi-climate" style="color:var(--red)">91.96%</div>
+    <div class="kpi-sub" id="kpi-climate-sub">vs. mgmt on climate proposals</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Say-on-pay dissent</div>
+    <div class="kpi-value" id="kpi-pay" style="color:var(--purple)">—</div>
+    <div class="kpi-sub" id="kpi-pay-sub">select an institution to compare</div>
+  </div>
 </div>
 
-<div class="chart-row">
+<!-- Category chart (full width, dynamic) -->
+<div class="card chart-full" role="region" aria-label="Dissent by category" aria-live="polite">
+  <div class="row-between" style="align-items:flex-start">
+    <div>
+      <div class="card-title" style="margin-bottom:4px" id="cat-chart-title">Dissent rate by proposal category — all institutions</div>
+      <div id="cat-notice" class="notice">BlackRock's iShares Inc filing only contains say-on-pay proposals. Full BlackRock data spans dozens of separate fund CIKs not yet loaded.</div>
+    </div>
+    <div class="legend" style="margin-bottom:0;flex-shrink:0;margin-left:12px">
+      <span class="li"><span class="ld" style="background:#f85149"></span>&gt;80s></span>
+      <span class="li"><span class="ld" style="background:#f59e0b"></span>40���80%</span>
+      <span class="li"><span class="ld" style="background:#3b82f6"></span>15–40%</span>
+      <span class="li"><span class="ld" style="background:#10b981"></span>&lt;15%</span>
+    </div>
+  </div>
+  <div class="chart-wrap" id="cat-wrap" style="height:340px">
+    <canvas id="catChart" role="img" aria-label="Category dissent rates"></canvas>
+  </div>
+</div>
+
+<!-- Institution bar + vote volume -->
+<div class="chart-row" role="region">
   <div class="card">
-    <div class="toggle-row">
+    <div class="row-between">
       <div class="card-title" style="margin-bottom:0">Dissent rate by institution</div>
-      <div class="toggle-group">
-        <button class="toggle-btn active" id="btn-all" onclick="switchView('all')">All proposals</button>
-        <button class="toggle-btn" id="btn-pay" onclick="switchView('pay')">Exec pay</button>
+      <div class="toggle-group" role="group" aria-label="Switch metric">
+        <button class="tbtn active" id="btn-all" onclick="switchBar('all')">All proposals</button>
+        <button class="tbtn" id="btn-pay" onclick="switchBar('pay')">Exec pay</button>
       </div>
     </div>
     <div class="legend" style="margin-top:10px">
-      <span class="legend-item"><span class="ld" style="background:#3b82f6"></span>BlackRock</span>
-      <span class="legend-item"><span class="ld" style="background:#10b981"></span>State Street</span>
-      <span class="legend-item"><span class="ld" style="background:#f59e0b"></span>Vanguard</span>
+      <span class="li"><span class="ld" style="background:#3b82f6"></span>BlackRock</span>
+      <span class="li"><span class="ld" style="background:#10b981"></span>State Street</span>
+      <span class="li"><span class="ld" style="background:#f59e0b"></span>Vanguard</span>
     </div>
-    <div class="chart-wrap" style="height:150px"><canvas id="instChart"></canvas></div>
+    <div class="chart-wrap" style="height:140px">
+      <canvas id="instChart" role="img" aria-label="Institution dissent rates"></canvas>
+    </div>
   </div>
   <div class="card">
-    <div class="card-title">Vote volume by institution</div>
-    <div class="legend">
-      <span class="legend-item"><span class="ld" style="background:#10b981"></span>State Street 74%</span>
-      <span class="legend-item"><span class="ld" style="background:#3b82f6"></span>Vanguard 23%</span>
-      <span class="legend-item"><span class="ld" style="background:#f59e0b"></span>BlackRock 3%</span>
+    <div class="card-title" id="donut-title">Vote volume</div>
+    <div class="legend" id="donut-legend">
+      <span class="li"><span class="ld" style="background:#10b981"></span>State Street 74%</span>
+      <span class="li"><span class="ld" style="background:#3b82f6"></span>Vanguard 23%</span>
+      <span class="li"><span class="ld" style="background:#f59e0b"></span>BlackRock 3%</span>
     </div>
-    <div class="chart-wrap" style="height:150px"><canvas id="volChart"></canvas></div>
+    <div class="chart-wrap" style="height:140px">
+      <canvas id="volChart" role="img" aria-label="Vote volume distribution"></canvas>
+    </div>
   </div>
 </div>
 
-<div class="card chart-full">
-  <div class="card-title">Dissent rate by proposal category</div>
-  <div class="legend">
-    <span class="legend-item"><span class="ld" style="background:#f85149"></span>&gt; 80% — ESG activist</span>
-    <span class="legend-item"><span class="ld" style="background:#f59e0b"></span>40–80% — selective</span>
-    <span class="legend-item"><span class="ld" style="background:#3b82f6"></span>15–40% — moderate</span>
-    <span class="legend-item"><span class="ld" style="background:#10b981"></span>&lt; 15% — deferential</span>
-  </div>
-  <div class="chart-wrap" style="height:360px"><canvas id="catChart"></canvas></div>
-</div>
-
-<div class="chart-row-half">
+<!-- Model -->
+<div class="chart-row" role="region">
   <div class="card">
     <div class="card-title">Logistic regression — top predictors of dissent</div>
-    <p style="font-size:11px;color:var(--text3);margin-bottom:12px">Green = predicts dissent &nbsp;·&nbsp; Red = predicts alignment with management</p>
-    <div class="chart-wrap" style="height:280px"><canvas id="coefChart"></canvas></div>
+    <p style="font-size:11px;color:var(--text3);margin-bottom:12px">Green = predicts dissent · Red = predicts alignment</p>
+    <div class="chart-wrap" style="height:280px">
+      <canvas id="coefChart" role="img" aria-label="Model coefficients"></canvas>
+    </div>
   </div>
   <div class="card" style="display:flex;flex-direction:column">
     <div class="card-title">Model performance</div>
     <div class="model-grid">
-      <div class="model-kpi"><div class="model-kpi-label">ROC-AUC</div><div class="model-kpi-val">0.798</div></div>
-      <div class="model-kpi"><div class="model-kpi-label">Accuracy</div><div class="model-kpi-val">95.6%</div></div>
-      <div class="model-kpi"><div class="model-kpi-label">Train size</div><div class="model-kpi-val">98,941</div></div>
-      <div class="model-kpi"><div class="model-kpi-label">Features</div><div class="model-kpi-val">29</div></div>
+      <div class="mkpi"><div class="mkpi-label">ROC-AUC</div><div class="mkpi-val">0.798</div></div>
+      <div class="mkpi"><div class="mkpi-label">Accuracy</div><div class="mkpi-val">95.6%</div></div>
+      <div class="mkpi"><div class="mkpi-label">Train set</div><div class="mkpi-val">98,941</div></div>
+      <div class="mkpi"><div class="mkpi-label">Features</div><div class="mkpi-val">29</div></div>
     </div>
     <div class="insight">
-      <div class="insight-title">What the model tells us</div>
-      <p>Proposal <em>category</em> dominates prediction. A say-on-pay vote carries a <span class="hl">-0.984</span> log-odds shift toward alignment — institutions almost always side with management on exec pay.</p>
+      <p>Proposal <em>category</em> dominates prediction. Say-on-pay carries a <span class="hl">−0.984</span> log-odds shift toward alignment — institutions almost always side with management on exec pay.</p>
       <p>Climate and human rights push the opposite way. <span class="hl">BlackRock (+0.366)</span> adds incremental contrarian signal beyond category alone.</p>
-      <p>An AUC of <span class="hl">0.798</span> from only 29 features suggests voting behaviour is systematic and predictable.</p>
+      <p>AUC of <span class="hl">0.798</span> from 29 features suggests voting behaviour is systematic — and predictable.</p>
     </div>
   </div>
 </div>
@@ -158,16 +232,253 @@ a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-const G='rgba(255,255,255,0.05)',T='#656d76',L='#8b949e';
-const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
-const allV=[0.32,5.66,2.83],payV=[14.9,7.2,3.1];
-const iC=new Chart(document.getElementById('instChart'),{type:'bar',data:{labels:['BlackRock','State Street','Vanguard'],datasets:[{data:allV,backgroundColor:['#3b82f6','#10b981','#f59e0b'],borderRadius:4,barThickness:28}]},options:{...base,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.parsed.x.toFixed(2)+'% dissent'}}},scales:{x:{grid:{color:G},ticks:{color:T,callback:v=>v+'%'},border:{display:false}},y:{grid:{display:false},ticks:{color:L},border:{display:false}}}}});
-function switchView(m){const a=m==='all';document.getElementById('btn-all').classList.toggle('active',a);document.getElementById('btn-pay').classList.toggle('active',!a);iC.data.datasets[0].data=a?allV:payV;iC.update();}
-new Chart(document.getElementById('volChart'),{type:'doughnut',data:{labels:['State Street','Vanguard','BlackRock'],datasets:[{data:[91734,27891,4052],backgroundColor:['#10b981','#3b82f6','#f59e0b'],borderWidth:0,hoverOffset:6}]},options:{...base,cutout:'70%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed.toLocaleString()+' votes'}}}}});
-const cV=[100,91.96,82.98,65.94,26.09,22.05,6.61,3.90];
-new Chart(document.getElementById('catChart'),{type:'bar',data:{labels:['Human rights','Climate / env.','DEI','Other','Other social','Shareholder rights','Director elections','Corp. governance'],datasets:[{data:cV,backgroundColor:cV.map(v=>v>80?'#f85149':v>40?'#f59e0b':v>15?'#3b82f6':'#10b981'),borderRadius:4,barThickness:30}]},options:{...base,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.parsed.x.toFixed(2)+'% opposed management'}}},scales:{x:{max:108,grid:{color:G},ticks:{color:T,callback:v=>v+'%'},border:{display:false}},y:{grid:{display:false},ticks:{color:L},border:{display:false}}}}});
-const cfV=[0.655,0.366,0.329,0.280,0.250,0.200,-0.150,-0.220,-0.561,-0.984];
-new Chart(document.getElementById('coefChart'),{type:'bar',data:{labels:['Director elections','BlackRock','Hum. rights','Climate','DEI','Shareholder rights','Corp. governance','Vanguard','Capital structure','Say-on-pay'],datasets:[{data:cfV,backgroundColor:cfV.map(v=>v>=0?'#10b981':'#f85149'),borderRadius:3,barThickness:18}]},options:{...base,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+(c.parsed.x>0?'+':'')+c.parsed.x.toFixed(3)+' log-odds'}}},scales:{x:{grid:{color:G},ticks:{color:T},border:{display:false}},y:{grid:{display:false},ticks:{color:L,font:{size:11}},border:{display:false}}}}});
+/* ── Data ──────────────────────────────────────────────────────────────── */
+const INST_COLOR = {BlackRock:'#3b82f6', StateStreet:'#10b981', Vanguard:'#f59e0b'};
+const INST_LABEL = {BlackRock:'BlackRock', StateStreet:'State Street', Vanguard:'Vanguard'};
+
+const OVERALL = {
+  All:        {total:123677, dissent:4.87, sub:'across 9,798 companies'},
+  BlackRock:  {total:4052,   dissent:0.32, sub:'iShares Inc fund'},
+  StateStreet:{total:91734,  dissent:5.66, sub:'State Street Inst. Investment Trust'},
+  Vanguard:   {total:27891,  dissent:2.83, sub:'Vanguard Index Funds'}
+};
+
+const EXECE_PAY = {BlackRock:14.9, StateStreet:7.2, Vanguard:3.1};
+
+const CAT_DATA = {
+  All: [
+    {cat:'Human rights',       pct:100.00},
+    {cat:'Climate / env.',     pct:91.96},
+    {cat:'DEI',                pct:82.98},
+    {cat:'Other',              pct:65.94},
+    {cat:'Other social',       pct:26.09},
+    {cat:'Shareholder rights', pct:22.05},
+    {cat:'Director elections', pct:6.61},
+    {cat:'Corp. governance',   pct:3.90},
+    {cat:'Compensation',       pct:2.04},
+    {cat:'Audit',              pct:1.85},
+    {cat:'Capital structure',  pct:0.43},
+    {cat:'Say-on-pay',         pct:0.32},
+    {cat:'Extraordinary',      pct:0.51},
+  ],
+  BlackRock: [
+    {cat:'Say-on-pay',pct:0.32,n:3768}
+  ],
+  StateStreet: [
+    {cat:'Human rights',       pct:100,  n:47},
+    {cat:'Climate / env.',     pct:91.50,n:294},
+    {cat:'DEI',                pct:81.40,n:43},
+    {cat:'Other',              pct:66.35,n:731},
+    {cat:'Shareholder rights', pct:27.59,n:232},
+    {cat:'Other social',       pct:24.44,n:405},
+    {cat:'Director elections', pct:8.01, n:38155},
+    {cat:'Corp. governance',   pct:3.80, n:20230},
+    {cat:'Audit',              pct:2.47, n:5028},
+    {cat:'Compensation',       pct:2.04, n:11227},
+    {cat:'Capital structure',  pct:0.40, n:13920},
+    {cat:'Extraordinary',      pct:0.20, n:1532},
+    {cat:'Say-on-pay',         pct:0.12, n:2051},
+  ],
+  Vanguard: [
+    {cat:'Other social',       pct:100, n:9},
+    {cat:'Human rights',       pct:100, n:5},
+    {cat:'Climate / env.',     pct:100, n:17},
+    {cat:'DEI',                pct:100, n:4},
+    {cat:'Other',              pct:16.67,n�<},
+    {cat:'Shareholder rights', pct:9.09, n:99},
+    {cat:'Corp. governance',   pct:5.93, n:1029},
+    {cat:'Director elections', pct:3.62, n:18014},
+    {cat:'Extraordinary',      pct:1.92, n:261},
+    {cat:'Compensation',       pct:0.76, n:1178},
+    {cat:'Capital structure',  pct:0.51, n:985},
+    {cat:'Say-on-pay',         pct:0.00, n:2629},
+    {cat:'Audit',              pct:0.00, n:3226},
+  ]
+};
+
+const CLIMATE_BY_INST = {All:'91.96%', BlackRock:'—', StateStreet:'91.5%', Vanguard:'100%'};
+const PAY_BY_INST     = {All:'—', BlackRock:'14.9%', StateStreet:'7.2%', Vanguard:'0%'};
+const PAY_SUB         = {All:'select an institution to compare', BlackRock:'AGAINST rate on exec-pay proposals', StateStreet:'AGAINST rate on exec-pay proposals', Vanguard:'0% — fully aligned with management'};
+const CLIMATE_SUB     = {All:'vs. mgmt on climate proposals', BlackRock:'no climate proposals in this fund', StateStreet:'out of 294 climate proposals', Vanguard:'all 17 climate proposals — against mgmt'};
+
+/* ── Chart setup ────────────────────────────────────────────────────── */
+const G='rgba(255,255,255,0.05)', T='#656d76', L='#8b949e';
+const baseOpts = {responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
+
+function catColor(v){ return v>80?'#f85149':v>40?'#f59e0b':v>15?'#3b82f6':'#10b981'; }
+
+/* Category chart */
+const catCtx = document.getElementById('catChart');
+const catChart = new Chart(catCtx, {
+  type:'bar',
+  data:{labels:[],datasets:[{data:[],backgroundColor:[],borderRadius:4,barThickness:26}]},
+  options:{...baseOpts,indexAxis:'y',
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toFixed(2)}% of votes opposed management`+(c.dataset.ns?` (n=${c.dataset.ns[c.dataIndex].toLocaleString()})`:'')}}},
+    scales:{
+      x:{max:108,grid:{color:G},ticks:{color:T,callback:v=>v+'%'},border:{display:false}},
+      y:{grid:{display:false},ticks:{color:L},border:{display:false}}
+    }
+  }
+});
+
+function updateCatChart(inst) {
+  const rows = CAT_DATA[inst];
+  const labels = rows.map(r=>r.cat);
+  const vals   = rows.map(r=>r.pct);
+  const colors = vals.map(catColor);
+  const ns     = rows.map(r=>r.n||null);
+
+  catChart.data.labels = labels;
+  catChart.data.datasets[0].data = vals;
+  catChart.data.datasets[0].backgroundColor = colors;
+  catChart.data.datasets[0].ns = ns;
+
+  // Adjust chart height based on row count
+  const h = Math.max(160, rows.length * 42 + 60);
+  document.getElementById('cat-wrap').style.height = h + 'px';
+
+  // Notice for BlackRock
+  const notice = document.getElementById('cat-notice');
+  notice.style.display = inst === 'BlackRock' ? 'block' : 'none';
+
+  // Title
+  const titleMap = {All:'all institutions', BlackRock:'BlackRock (iShares Inc)', StateStreet:'State Street', Vanguard:'Vanguard'};
+  document.getElementById('cat-chart-title').textContent = `Dissent rate by proposal category — ${titleMap[inst]}`;
+
+  catChart.update();
+}
+
+/* Institution bar chart */
+const allBarVals = [0.32, 5.66, 2.83];
+const payBarVals = [14.9, 7.2, 3.1];
+let activeBar = 'all';
+
+const instChart = new Chart(document.getElementById('instChart'), {
+  type:'bar',
+  data:{
+    labels:['BlackRock','State Street','Vanguard'],
+    datasets:[{data:allBarVals,backgroundColor:['#3b82f6','#10b981','#f59e0b'],borderRadius:4,barThickness:28}]
+  },
+  options:{...baseOpts,indexAxis:'y',
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toFixed(2)}% dissent`}}},
+    scales:{
+      x:{grid:{color:G},ticks:{color:T,callback:v=>v+'%'},border:{display:false}},
+      y:{grid:{display:false},ticks:{color:L},border:{display:false}}
+    }
+  }
+});
+
+function switchBar(mode) {
+  activeBar = mode;
+  ['btn-all','btn-pay'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  document.getElementById(mode==='all'?'btn-all':'btn-pay').classList.add('active');
+  instChart.data.datasets[0].data = mode==='all' ? allBarVals : payBarVals;
+  instChart.update();
+}
+
+/* Volume donut */
+const volChart = new Chart(document.getElementById('volChart'), {
+  type:'doughnut',
+  data:{
+    labels:['State Street','Vanguard','BlackRock'],
+    datasets:[{data:[91734,27891,4052],backgroundColor:['#10b981','#3b82f6','#f59e0b'],borderWidth:0,hoverOffset:6}]
+  },
+  options:{...baseOpts,cutout:'70%',
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toLocaleString()} votes`}}}
+  }
+});
+
+/* Coefficients */
+const cfVals = [0.655,0.366,0.329,0.280,0.250,0.200,-0.150,-0.220,-0.561,-0.984];
+new Chart(document.getElementById('coefChart'),{
+  type:'bar',
+  data:{
+    labels:['Director elections','BlackRock','Hum. rights','Climate','DEI','Shareholder rights','Corp. governance','Vanguard','Capital structure','Say-on-pay'],
+    datasets:[{data:cfVals,backgroundColor:cfVals.map(v=>v>=0?'#10b981':'#f85149'),borderRadius:3,barThickness:18}]
+  },
+  options:{...baseOpts,indexAxis:'y',
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x>0?'+':''}${c.parsed.x.toFixed(3)} log-odds`}}},
+    scales:{
+      x:{grid:{color:G},ticks:{color:T},border:{display:false}},
+      y:{grid:{display:false},ticks:{color:L,font:{size:11}},border:{display:false}}
+    }
+  }
+});
+
+/* ── Slicer logic ────────────────────────────────────────────────────── */
+let activeInst = 'All';
+
+function setInst(inst) {
+  activeInst = inst;
+
+  // Update pill styles
+  document.querySelectorAll('.pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.inst === inst);
+    p.setAttribute('aria-pressed', p.dataset.inst === inst);
+  });
+
+  // KPI cards
+  const o = OVERALL[inst];
+  document.getElementById('kpi-votes').textContent = o.total.toLocaleString();
+  document.getElementById('kpi-votes-sub').textContent = o.sub;
+  document.getElementById('kpi-dissent').textContent = o.dissent.toFixed(2) + '%';
+  document.getElementById('kpi-climate').textContent = CLIMATE_BY_INST[inst];
+  document.getElementById('kpi-climate-sub').textContent = CLIMATE_SUB[inst];
+  document.getElementById('kpi-pay').textContent = PAY_BY_INST[inst];
+  document.getElementById('kpi-pay-sub').textContent = PAY_SUB[inst];
+
+  // KPI accent colors
+  const accentMap = {All:'#3b82f6', BlackRock:'#3b82f6', StateStreet:'#10b981', Vanguard:'#f59e0b'};
+  document.getElementById('kpi-votes').style.color = accentMap[inst];
+
+  // Category chart
+  updateCatChart(inst);
+
+  // Highlight selected institution bar (opacity)
+  if (inst === 'All') {
+    instChart.data.datasets[0].backgroundColor = ['#3b82f6','#10b981','#f59e0b'];
+  } else {
+    const colors = ['#3b82f6','#10b981','#f59e0b'];
+    const idxMap = {BlackRock:0, StateStreet:1, Vanguard:2};
+    const sel = idxMap[inst];
+    instChart.data.datasets[0].backgroundColor = colors.map((c,i) => i===sel ? c : c+'44');
+  }
+  instChart.update();
+
+  // Donut: show per-institution how_voted breakdown when filtered
+  if (inst === 'All') {
+    volChart.data.labels = ['State Street','Vanguard','BlackRock'];
+    volChart.data.datasets[0].data = [91734,27891,4052];
+    volChart.data.datasets[0].backgroundColor = ['#10b981','#3b82f6','#f59e0b'];
+    document.getElementById('donut-title').textContent = 'Vote volume';
+    document.getElementById('donut-legend').innerHTML = `
+      <span class="li"><span class="ld" style="background:#10b981"></span>State Street 74%</span>
+      <span class="li"><span class="ld" style="background:#3b82f6"></span>Vanguard 23%</span>
+      <span class="li"><span class="ld" style="background:#f59e0b"></span>BlackRock 3%</span>`;
+  } else {
+    // Show vote type breakdown per institution
+    const voteData = {
+      BlackRock:  {FOR:3755, AGAINST:13,  WITHHOLD:0,  ABSTAIN:0 },
+      StateStreet:{FOR:86470,AGAINST:4081,WITHHOLD:1105,ABSTAIN:78},
+      Vanguard:   {FOR:27099,AGAINST:626, WITHHOLD:166, ABSTAIN:0 }
+    }[inst];
+    const col = INST_COLOR[inst];
+    const alphas = ['ff','99','55','33'];
+    const keys = Object.keys(voteData).filter(k=>voteData[k]>0);
+    const tot = Object.values(voteData).reduce((a,b)=>a+b,0);
+    volChart.data.labels = keys;
+    volChart.data.datasets[0].data = keys.map(k=>voteData[k]);
+    volChart.data.datasets[0].backgroundColor = keys.map((_,i)=>col+alphas[i]);
+    document.getElementById('donut-title').textContent = `${INST_LABEL[inst]} — how voted`;
+    document.getElementById('donut-legend').innerHTML = keys.map((k,i)=>
+      `<span class="li"><span class="ld" style="background:${col+alphas[i]}"></span>${k} ${((voteData[k]/tot)*100).toFixed(0)}%</span>`
+    ).join('');
+  }
+  volChart.update();
+}
+
+/* Init */
+updateCatChart('All');
 </script>
 </body>
 </html>
