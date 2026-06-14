@@ -241,7 +241,7 @@ const OVERALL = {
   Vanguard:   {total:27891,  dissent:4.32, sub:'Vanguard Index Funds'}
 };
 
-const EXECE_PAY = {BlackRock:7.33, StateStreet:7.2, Vanguard:3.1};
+const EXEC_PAY = {BlackRock:7.33, StateStreet:7.2, Vanguard:3.1};
 
 const CAT_DATA = {
   All: [
@@ -267,7 +267,7 @@ const CAT_DATA = {
     {cat:'Climate / env.',     pct:91.50,n:294},
     {cat:'DEI',                pct:81.40,n:43},
     {cat:'Other',              pct:66.35,n:731},
-    {cat:'Shareholder rights', pct:27.59,n:"232},
+    {cat:'Shareholder rights', pct:27.59,n:232},
     {cat:'Other social',       pct:24.44,n:405},
     {cat:'Director elections', pct:8.01, n:38155},
     {cat:'Corp. governance',   pct:3.80, n:20230},
@@ -299,20 +299,18 @@ const PAY_BY_INST     = {All:'—', BlackRock:'7.33%', StateStreet:'7.2%', Vangu
 const PAY_SUB         = {All:'select an institution to compare', BlackRock:'AGAINST rate on exec-pay (iShares Inc)', StateStreet:'AGAINST rate on exec-pay proposals', Vanguard:'0% — fully aligned with management'};
 const CLIMATE_SUB     = {All:'vs. mgmt on climate proposals', BlackRock:'category tags absent in iShares Trust / BR Funds XML', StateStreet:'out of 294 climate proposals', Vanguard:'all 17 climate proposals — against mgmt'};
 
-/* ── Chart setup ────────────────────────────────────────────────────── */
+/* ── Chart setup ─────────────────────────────────────────────────────── */
 const G='rgba(255,255,255,0.05)', T='#656d76', L='#8b949e';
 const baseOpts = {responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
 
-function catColor(v); return v>80?'#f85149':v>40?'#f59e0b':v>15?'#3b82f6':'#10b981'; }
+function catColor(v){ return v>80?'#f85149':v>40?'#f59e0b':v>15?'#3b82f6':'#10b981'; }
 
 /* Category chart */
 const catCtx = document.getElementById('catChart');
 const catChart = new Chart(catCtx, {
   type:'bar',
   data:{labels:[],datasets:[{data:[],backgroundColor:[],borderRadius:4,barThickness:26}]},
-  options:{
-    responsive:true,maintainAspectRatio:false,
-    indexAxis:'y',
+  options:{...baseOpts,indexAxis:'y',
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toFixed(2)}% of votes opposed management`+(c.dataset.ns?` (n=${c.dataset.ns[c.dataIndex].toLocaleString()})`:'')}}},
     scales:{
       x:{max:108,grid:{color:G},ticks:{color:T,callback:v=>v+'%'},border:{display:false}},
