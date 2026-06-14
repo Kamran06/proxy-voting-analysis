@@ -152,7 +152,7 @@ a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
   <div class="row-between" style="align-items:flex-start">
     <div>
       <div class="card-title" style="margin-bottom:4px" id="cat-chart-title">Dissent rate by proposal category — all institutions</div>
-      <div id="cat-notice" class="notice">Category breakdown covers iShares Inc only (4,053 votes). The iShares Trust and BlackRock Funds N-PX filings (199,103 votes) omit proposal category tags in their XML — overall BlackRock dissent rate still reflects all 203,156 votes.</div>
+      <div id="cat-notice" class="notice">BlackRock N-PX filings omit proposal category tags. Categories here are keyword-inferred from vote descriptions across all 396,693 BlackRock votes (iShares Trust + BlackRock Funds + iShares Inc).</div>
     </div>
     <div class="legend" style="margin-bottom:0;flex-shrink:0;margin-left:12px">
       <span class="li"><span class="ld" style="background:#f85149"></span>&gt;80%</span>
@@ -260,7 +260,19 @@ const CAT_DATA = {
     {cat:'Extraordinary',      pct:0.51},
   ],
   BlackRock: [
-    {cat:'Say-on-pay',pct:7.33,n:4053}
+    {cat:'Human rights',       pct:99.77, n:443},
+    {cat:'Other social',       pct:98.74, n:1029},
+    {cat:'DEI',                pct:98.48, n:1050},
+    {cat:'Climate / env.',     pct:68.65, n:1981},
+    {cat:'Corp. governance',   pct:14.83, n:1632},
+    {cat:'Say-on-pay',         pct:12.75, n:26361},
+    {cat:'Other',              pct:9.72,  n:112376},
+    {cat:'Shareholder rights', pct:3.37,  n:832},
+    {cat:'Director elections', pct:1.87,  n:212814},
+    {cat:'Extraordinary',      pct:0.62,  n:3244},
+    {cat:'Audit',              pct:0.54,  n:24198},
+    {cat:'Capital structure',  pct:0.51,  n:5497},
+    {cat:'Compensation',       pct:0.31,  n:5236},
   ],
   StateStreet: [
     {cat:'Human rights',       pct:100,  n:47},
