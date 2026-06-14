@@ -71,8 +71,7 @@ a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
 
 /* Model section */
 .model-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:.75rem}
-.mkpi{background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:.w rem 1rem}
-.mkpi padding:{.7rem 1rem}
+.mkpi{background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:.7rem 1rem}
 .mkpi-label{font-size:11px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
 .mkpi-val{font-size:20px;font-weight:600;font-family:'Fira Code',monospace;color:var(--blue)}
 .insight{border-top:1px solid var(--border2);padding-top:.9rem}
@@ -86,8 +85,7 @@ a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
 @media(max-width:768px){
   .kpi-grid,.chart-row{grid-template-columns:repeat(2,1fr)}
   .kpi-grid{grid-template-columns:repeat(2,1fr)}
-  .header{flex-direction:column
-gap:1rem}
+  .header{flex-direction:column;gap:1rem}
   .slicer{gap:6px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -129,12 +127,12 @@ gap:1rem}
 <div class="kpi-grid" role="region" aria-label="Key metrics" aria-live="polite">
   <div class="kpi">
     <div class="kpi-label">Total votes</div>
-    <div class="kpi-value" id="kpi-votes" style="color:var(--blue)">123,677</div>
-    <div class="kpi-sub" id="kpi-votes-sub">across 9,798 companies</div>
+    <div class="kpi-value" id="kpi-votes" style="color:var(--blue)">323,505</div>
+    <div class="kpi-sub" id="kpi-votes-sub">across 10,576 companies</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Dissent rate</div>
-    <div class="kpi-value" id="kpi-dissent" style="color:var(--amber)">4.87%</div>
+    <div class="kpi-value" id="kpi-dissent" style="color:var(--amber)">5.53%</div>
     <div class="kpi-sub">voted against mgmt recommendation</div>
   </div>
   <div class="kpi">
@@ -154,11 +152,11 @@ gap:1rem}
   <div class="row-between" style="align-items:flex-start">
     <div>
       <div class="card-title" style="margin-bottom:4px" id="cat-chart-title">Dissent rate by proposal category — all institutions</div>
-      <div id="cat-notice" class="notice">BlackRock's iShares Inc filing only contains say-on-pay proposals. Full BlackRock data spans dozens of separate fund CIKs not yet loaded.</div>
+      <div id="cat-notice" class="notice">Category breakdown covers iShares Inc only (4,053 votes). The iShares Trust and BlackRock Funds N-PX filings (199,103 votes) omit proposal category tags in their XML — overall BlackRock dissent rate still reflects all 203,156 votes.</div>
     </div>
     <div class="legend" style="margin-bottom:0;flex-shrink:0;margin-left:12px">
-      <span class="li"><span class="ld" style="background:#f85149"></span>&gt;80s></span>
-      <span class="li"><span class="ld" style="background:#f59e0b"></span>40���80%</span>
+      <span class="li"><span class="ld" style="background:#f85149"></span>&gt;80%</span>
+      <span class="li"><span class="ld" style="background:#f59e0b"></span>40–80%</span>
       <span class="li"><span class="ld" style="background:#3b82f6"></span>15–40%</span>
       <span class="li"><span class="ld" style="background:#10b981"></span>&lt;15%</span>
     </div>
@@ -190,9 +188,9 @@ gap:1rem}
   <div class="card">
     <div class="card-title" id="donut-title">Vote volume</div>
     <div class="legend" id="donut-legend">
-      <span class="li"><span class="ld" style="background:#10b981"></span>State Street 74%</span>
-      <span class="li"><span class="ld" style="background:#3b82f6"></span>Vanguard 23%</span>
-      <span class="li"><span class="ld" style="background:#f59e0b"></span>BlackRock 3%</span>
+      <span class="li"><span class="ld" style="background:#3b82f6"></span>BlackRock 63%</span>
+      <span class="li"><span class="ld" style="background:#10b981"></span>State Street 29%</span>
+      <span class="li"><span class="ld" style="background:#f59e0b"></span>Vanguard 9%</span>
     </div>
     <div class="chart-wrap" style="height:140px">
       <canvas id="volChart" role="img" aria-label="Vote volume distribution"></canvas>
@@ -219,7 +217,7 @@ gap:1rem}
     </div>
     <div class="insight">
       <p>Proposal <em>category</em> dominates prediction. Say-on-pay carries a <span class="hl">−0.984</span> log-odds shift toward alignment — institutions almost always side with management on exec pay.</p>
-      <p>Climate and human rights push the opposite way. <span class="hl">BlackRock (+0.366)</span> adds incremental contrarian signal beyond category alone.</p>
+      <p>Expanding BlackRock to 203K votes across three fund families reveals convergence: BlackRock (5.63%) ≈ State Street (5.68%) ≈ Vanguard (4.32%). The earlier 0.32% figure was a single small fund, not representative of the institution.</p>
       <p>AUC of <span class="hl">0.798</span> from 29 features suggests voting behaviour is systematic — and predictable.</p>
     </div>
   </div>
@@ -237,13 +235,13 @@ const INST_COLOR = {BlackRock:'#3b82f6', StateStreet:'#10b981', Vanguard:'#f59e0
 const INST_LABEL = {BlackRock:'BlackRock', StateStreet:'State Street', Vanguard:'Vanguard'};
 
 const OVERALL = {
-  All:        {total:123677, dissent:4.87, sub:'across 9,798 companies'},
-  BlackRock:  {total:4052,   dissent:0.32, sub:'iShares Inc fund'},
-  StateStreet:{total:91734,  dissent:5.66, sub:'State Street Inst. Investment Trust'},
-  Vanguard:   {total:27891,  dissent:2.83, sub:'Vanguard Index Funds'}
+  All:        {total:323505, dissent:5.53, sub:'across 10,576 companies'},
+  BlackRock:  {total:203156, dissent:5.63, sub:'iShares Trust \xb7 BlackRock Funds \xb7 iShares Inc'},
+  StateStreet:{total:92458,  dissent:5.68, sub:'State Street Inst. Investment Trust'},
+  Vanguard:   {total:27891,  dissent:4.32, sub:'Vanguard Index Funds'}
 };
 
-const EXECE_PAY = {BlackRock:14.9, StateStreet:7.2, Vanguard:3.1};
+const EXEC_PAY = {BlackRock:7.33, StateStreet:7.2, Vanguard:3.1};
 
 const CAT_DATA = {
   All: [
@@ -262,7 +260,7 @@ const CAT_DATA = {
     {cat:'Extraordinary',      pct:0.51},
   ],
   BlackRock: [
-    {cat:'Say-on-pay',pct:0.32,n:3768}
+    {cat:'Say-on-pay',pct:7.33,n:4053}
   ],
   StateStreet: [
     {cat:'Human rights',       pct:100,  n:47},
@@ -297,11 +295,11 @@ const CAT_DATA = {
 };
 
 const CLIMATE_BY_INST = {All:'91.96%', BlackRock:'—', StateStreet:'91.5%', Vanguard:'100%'};
-const PAY_BY_INST     = {All:'—', BlackRock:'14.9%', StateStreet:'7.2%', Vanguard:'0%'};
-const PAY_SUB         = {All:'select an institution to compare', BlackRock:'AGAINST rate on exec-pay proposals', StateStreet:'AGAINST rate on exec-pay proposals', Vanguard:'0% — fully aligned with management'};
-const CLIMATE_SUB     = {All:'vs. mgmt on climate proposals', BlackRock:'no climate proposals in this fund', StateStreet:'out of 294 climate proposals', Vanguard:'all 17 climate proposals — against mgmt'};
+const PAY_BY_INST     = {All:'—', BlackRock:'7.33%', StateStreet:'7.2%', Vanguard:'0%'};
+const PAY_SUB         = {All:'select an institution to compare', BlackRock:'AGAINST rate on exec-pay (iShares Inc)', StateStreet:'AGAINST rate on exec-pay proposals', Vanguard:'0% — fully aligned with management'};
+const CLIMATE_SUB     = {All:'vs. mgmt on climate proposals', BlackRock:'category tags absent in iShares Trust / BR Funds XML', StateStreet:'out of 294 climate proposals', Vanguard:'all 17 climate proposals — against mgmt'};
 
-/* ── Chart setup ────────────────────────────────────────────────────── */
+/* ── Chart setup ─────────────────────────────────────────────────────── */
 const G='rgba(255,255,255,0.05)', T='#656d76', L='#8b949e';
 const baseOpts = {responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
 
@@ -349,8 +347,8 @@ function updateCatChart(inst) {
 }
 
 /* Institution bar chart */
-const allBarVals = [0.32, 5.66, 2.83];
-const payBarVals = [14.9, 7.2, 3.1];
+const allBarVals = [5.63, 5.68, 4.32];
+const payBarVals = [7.33, 7.2, 3.1];
 let activeBar = 'all';
 
 const instChart = new Chart(document.getElementById('instChart'), {
@@ -381,7 +379,7 @@ const volChart = new Chart(document.getElementById('volChart'), {
   type:'doughnut',
   data:{
     labels:['State Street','Vanguard','BlackRock'],
-    datasets:[{data:[91734,27891,4052],backgroundColor:['#10b981','#3b82f6','#f59e0b'],borderWidth:0,hoverOffset:6}]
+    datasets:[{data:[92458,27891,203156],backgroundColor:['#10b981','#f59e0b','#3b82f6'],borderWidth:0,hoverOffset:6}]
   },
   options:{...baseOpts,cutout:'70%',
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toLocaleString()} votes`}}}
@@ -468,10 +466,10 @@ function setInst(inst) {
     const tot = Object.values(voteData).reduce((a,b)=>a+b,0);
     volChart.data.labels = keys;
     volChart.data.datasets[0].data = keys.map(k=>voteData[k]);
-    volChart.data.datasets[0].backgroundColor = keys.map((_,i)=>col+alphas[i]);
+    volChart.data.datasets[0].backgroundColor = keys.map((_,i) => col + alphas[i]);
     document.getElementById('donut-title').textContent = `${INST_LABEL[inst]} — how voted`;
-    document.getElementById('donut-legend').innerHTML = keys.map((k,i)=>
-      `<span class="li"><span class="ld" style="background:${col+alphas[i]}"></span>${k} ${((voteData[k]/tot)*100).toFixed(0)}%</span>`
+    document.getElementById('donut-legend').innerHTML = keys.map((k,i) =>
+      `<span class="li"><span class="ld" style="background:${col+alphas[i]}"></span>${k} ${voteData[k]/tot*100.toFixed(0)}%</span>`
     ).join('');
   }
   volChart.update();
