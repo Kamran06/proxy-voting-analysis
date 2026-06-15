@@ -131,7 +131,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   <div>
     <div class="title-tag">SEC EDGAR &middot; N-PX Filings 2025</div>
     <h1>Institutional Proxy Voting Divergence</h1>
-    <p>3 institutions &nbsp;&middot;&nbsp; 9,798 companies &nbsp;&middot;&nbsp; 323,505 votes &nbsp;&middot;&nbsp; First structured XML year</p>
+    <p>3 institutions &nbsp;&middot;&nbsp; 1,876,070 votes &nbsp;&middot;&nbsp; 49 N-PX filings &nbsp;&middot;&nbsp; First structured XML year</p>
   </div>
   <a href="https://github.com/Kamran06/proxy-voting-analysis" class="gh-link" target="_blank" rel="noopener" aria-label="View on GitHub">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
@@ -160,19 +160,19 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 <div class="kpi-grid" role="region" aria-label="Key metrics" aria-live="polite">
   <div class="kpi card">
     <div class="kpi-label">Total votes</div>
-    <div class="kpi-value blue" id="kpi-votes">323,505</div>
-    <div class="kpi-sub" id="kpi-votes-sub">across 10,576 companies</div>
+    <div class="kpi-value blue" id="kpi-votes">1,876,070</div>
+    <div class="kpi-sub" id="kpi-votes-sub">49 N-PX filings · 3 institutions</div>
     <div class="kpi-bar-track"><div class="kpi-bar-fill" id="bar-votes" style="width:100%;background:var(--blue)"></div></div>
   </div>
   <div class="kpi card">
     <div class="kpi-label">Dissent rate</div>
-    <div class="kpi-value amber" id="kpi-dissent">5.53%</div>
+    <div class="kpi-value amber" id="kpi-dissent">5.19%</div>
     <div class="kpi-sub">voted against mgmt recommendation</div>
     <div class="kpi-bar-track"><div class="kpi-bar-fill" id="bar-dissent" style="width:5.53%;background:var(--amber)"></div></div>
   </div>
   <div class="kpi card">
     <div class="kpi-label">Climate dissent</div>
-    <div class="kpi-value red" id="kpi-climate">91.96%</div>
+    <div class="kpi-value red" id="kpi-climate">91.14%</div>
     <div class="kpi-sub" id="kpi-climate-sub">vs. mgmt on climate proposals</div>
     <div class="kpi-bar-track"><div class="kpi-bar-fill" id="bar-climate" style="width:91.96%;background:var(--red)"></div></div>
   </div>
@@ -189,7 +189,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   <div class="row-between" style="align-items:flex-start">
     <div style="flex:1;min-width:0">
       <div class="card-title" id="cat-chart-title">Dissent rate by proposal category &mdash; all institutions</div>
-      <div id="cat-notice" class="notice">BlackRock N-PX filings omit proposal category tags. Categories here are keyword-inferred from vote descriptions across all 396,693 BlackRock votes (iShares Trust + BlackRock Funds + iShares Inc).</div>
+      <div id="cat-notice" class="notice">BlackRock iShares Trust 2025 XML includes structured category tags. Top 6 categories by volume shown (1,011,315 votes across 10 fund families). ESG-tagged proposals are rare in iShares Trust filings — Human Rights, Climate, and DEI are not shown here.</div>
     </div>
     <div class="legend" style="margin-bottom:0;flex-shrink:0;margin-left:14px">
       <span class="li"><span class="ld" style="background:#f87171"></span>&gt;80%</span>
@@ -225,9 +225,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   <div class="card">
     <div class="card-title" id="donut-title">Vote volume</div>
     <div class="legend" id="donut-legend">
-      <span class="li"><span class="ld" style="background:#3b82f6"></span>BlackRock 63%</span>
-      <span class="li"><span class="ld" style="background:#10b981"></span>State Street 29%</span>
-      <span class="li"><span class="ld" style="background:#f59e0b"></span>Vanguard 9%</span>
+      <span class="li"><span class="ld" style="background:#3b82f6"></span>BlackRock 54%</span>
+      <span class="li"><span class="ld" style="background:#10b981"></span>State Street 30%</span>
+      <span class="li"><span class="ld" style="background:#f59e0b"></span>Vanguard 16%</span>
     </div>
     <div class="chart-wrap" style="height:145px">
       <canvas id="volChart" role="img" aria-label="Vote volume distribution"></canvas>
@@ -254,7 +254,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     </div>
     <div class="insight">
       <p>Proposal <em>category</em> dominates prediction. Say-on-pay carries a <span class="hl">-0.984</span> log-odds shift toward alignment &mdash; institutions almost always side with management on exec pay.</p>
-      <p>Expanding BlackRock to 203K votes across three fund families reveals convergence: BlackRock (5.63%) &#8776; State Street (5.68%) &#8776; Vanguard (4.32%). The earlier 0.32% figure was a single small fund, not representative of the institution.</p>
+      <p>Expanding to <span class="hl">1.88M votes</span> across 49 filings reveals divergence: Vanguard (<span class="hl">8.05%</span>) is nearly 2&times; BlackRock (<span class="hl">4.37%</span>) and well above State Street (<span class="hl">5.10%</span>). Vanguard World Fund drives elevated Director Elections and Corporate Governance opposition.</p>
       <p>AUC of <span class="hl">0.798</span> from 29 features suggests voting behaviour is systematic &mdash; and predictable.</p>
     </div>
   </div>
@@ -300,49 +300,42 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 const INST_COLOR={BlackRock:'#3b82f6',StateStreet:'#10b981',Vanguard:'#f59e0b'};
 const INST_LABEL={BlackRock:'BlackRock',StateStreet:'State Street',Vanguard:'Vanguard'};
 const OVERALL={
-  All:        {total:323505,dissent:5.53,sub:'across 10,576 companies'},
-  BlackRock:  {total:203156,dissent:5.63,sub:'iShares Trust \xb7 BlackRock Funds \xb7 iShares Inc'},
-  StateStreet:{total:92458, dissent:5.68,sub:'State Street Inst. Investment Trust'},
-  Vanguard:   {total:27891, dissent:4.32,sub:'Vanguard Index Funds'}
+  All:        {total:1876070,dissent:5.19,sub:'49 N-PX filings · 3 institutions'},
+  BlackRock:  {total:1011315,dissent:4.37,sub:'iShares Trust \xb7 10 fund families'},
+  StateStreet:{total:556525, dissent:5.10,sub:'SSIT \xb7 SPDR Index Shares Funds'},
+  Vanguard:   {total:308230, dissent:8.05,sub:'Vanguard Index Funds \xb7 World Fund'}
 };
-const PAY_NUM={All:null,BlackRock:7.33,StateStreet:7.2,Vanguard:0};
-const PAY_SUB={All:'select an institution to compare',BlackRock:'AGAINST rate on exec-pay (iShares Inc)',StateStreet:'AGAINST rate on exec-pay proposals',Vanguard:'0% — fully aligned with management'};
-const CLIMATE_VAL={All:91.96,BlackRock:null,StateStreet:91.5,Vanguard:100};
-const CLIMATE_TXT={All:'91.96%',BlackRock:'—',StateStreet:'91.5%',Vanguard:'100%'};
-const CLIMATE_SUB={All:'vs. mgmt on climate proposals',BlackRock:'category tags absent in iShares Trust / BR Funds XML',StateStreet:'out of 294 climate proposals',Vanguard:'all 17 climate proposals — against mgmt'};
+const PAY_NUM={All:null,BlackRock:4.2,StateStreet:1.7,Vanguard:5.4};
+const PAY_SUB={All:'select an institution to compare',BlackRock:'say-on-pay against rate (iShares Trust)',StateStreet:'say-on-pay against rate (SSIT + SPDR)',Vanguard:'say-on-pay against rate (Index + World)'};
+const CLIMATE_VAL={All:91.14,BlackRock:null,StateStreet:91.5,Vanguard:100};
+const CLIMATE_TXT={All:'91.14%',BlackRock:'—',StateStreet:'91.5%',Vanguard:'100%'};
+const CLIMATE_SUB={All:'vs. mgmt on climate proposals',BlackRock:'climate tags rare in iShares Trust XML — not shown',StateStreet:'out of 294 climate proposals',Vanguard:'all 17 climate proposals — against mgmt'};
 
 const CAT_DATA={
   All:[
-    {cat:'Human rights',pct:100.00},{cat:'Climate / env.',pct:91.96},{cat:'DEI',pct:82.98},
-    {cat:'Other',pct:65.94},{cat:'Other social',pct:26.09},{cat:'Shareholder rights',pct:22.05},
-    {cat:'Director elections',pct:6.61},{cat:'Corp. governance',pct:3.90},
-    {cat:'Compensation',pct:2.04},{cat:'Audit',pct:1.85},
-    {cat:'Extraordinary',pct:0.51},{cat:'Capital structure',pct:0.43},{cat:'Say-on-pay',pct:0.32}
+    {cat:'Human rights',pct:92.78},{cat:'Climate / env.',pct:91.14},{cat:'DEI',pct:84.95},
+    {cat:'Other',pct:47.38},{cat:'Other social',pct:39.48},{cat:'Shareholder rights',pct:22.05},
+    {cat:'Director elections',pct:5.13},{cat:'Corp. governance',pct:4.67},
+    {cat:'Say-on-pay',pct:3.50},{cat:'Compensation',pct:2.82},
+    {cat:'Audit',pct:1.80},{cat:'Capital structure',pct:0.76},{cat:'Extraordinary',pct:0.51}
   ],
   BlackRock:[
-    {cat:'Human rights',pct:99.77,n:443},{cat:'Other social',pct:98.74,n:1029},{cat:'DEI',pct:98.48,n:1050},
-    {cat:'Climate / env.',pct:68.65,n:1981},{cat:'Corp. governance',pct:14.83,n:1632},
-    {cat:'Say-on-pay',pct:12.75,n:26361},{cat:'Other',pct:9.72,n:112376},
-    {cat:'Shareholder rights',pct:3.37,n:832},{cat:'Director elections',pct:1.87,n:212814},
-    {cat:'Extraordinary',pct:0.62,n:3244},{cat:'Audit',pct:0.54,n:24198},
-    {cat:'Capital structure',pct:0.51,n:5497},{cat:'Compensation',pct:0.31,n:5236}
+    {cat:'Say-on-pay',pct:5.49,n:59194},{cat:'Corp. governance',pct:5.37,n:177249},
+    {cat:'Compensation',pct:4.15,n:50411},{cat:'Director elections',pct:3.06,n:534410},
+    {cat:'Capital structure',pct:1.26,n:72985},{cat:'Audit',pct:0.78,n:70911}
   ],
   StateStreet:[
     {cat:'Human rights',pct:100,n:47},{cat:'Climate / env.',pct:91.50,n:294},{cat:'DEI',pct:81.40,n:43},
     {cat:'Other',pct:66.35,n:731},{cat:'Shareholder rights',pct:27.59,n:232},
-    {cat:'Other social',pct:24.44,n:405},{cat:'Director elections',pct:8.01,n:38155},
-    {cat:'Corp. governance',pct:3.80,n:20230},{cat:'Audit',pct:2.47,n:5028},
-    {cat:'Compensation',pct:2.04,n:11227},{cat:'Capital structure',pct:0.40,n:13920},
-    {cat:'Extraordinary',pct:0.20,n:1532},{cat:'Say-on-pay',pct:0.12,n:2051}
+    {cat:'Other social',pct:24.44,n:405},{cat:'Director elections',pct:8.69,n:210392},
+    {cat:'Corp. governance',pct:2.94,n:132278},{cat:'Compensation',pct:1.75,n:62477},
+    {cat:'Audit',pct:1.73,n:33479},{cat:'Capital structure',pct:0.23,n:90519}
   ],
   Vanguard:[
-    {cat:'Other social',pct:100,n:9},{cat:'Human rights',pct:100,n:5},
+    {cat:'Human rights',pct:100,n:5},{cat:'Other social',pct:100,n:9},
     {cat:'Climate / env.',pct:100,n:17},{cat:'DEI',pct:100,n:4},
-    {cat:'Other',pct:16.67,n:6},{cat:'Shareholder rights',pct:9.09,n:99},
-    {cat:'Corp. governance',pct:5.93,n:1029},{cat:'Director elections',pct:3.62,n:18014},
-    {cat:'Extraordinary',pct:1.92,n:261},{cat:'Compensation',pct:0.76,n:1178},
-    {cat:'Capital structure',pct:0.51,n:985},{cat:'Say-on-pay',pct:0.00,n:2629},
-    {cat:'Audit',pct:0.00,n:3226}
+    {cat:'Corp. governance',pct:8.00,n:31832},{cat:'Director elections',pct:7.11,n:180675},
+    {cat:'Audit',pct:4.70,n:25530},{cat:'Capital structure',pct:1.32,n:21526}
   ]
 };
 
@@ -372,13 +365,13 @@ function updateCatChart(inst){
   catChart.data.datasets[0].ns=rows.map(r=>r.n||null);
   document.getElementById('cat-wrap').style.height=Math.max(180,rows.length*43+60)+'px';
   document.getElementById('cat-notice').style.display=inst==='BlackRock'?'block':'none';
-  const tm={All:'all institutions',BlackRock:'BlackRock (keyword-inferred)',StateStreet:'State Street',Vanguard:'Vanguard'};
+  const tm={All:'all institutions',BlackRock:'BlackRock (iShares Trust · 10 fund families)',StateStreet:'State Street',Vanguard:'Vanguard'};
   document.getElementById('cat-chart-title').textContent='Dissent rate by proposal category — '+tm[inst];
   catChart.update();
 }
 
 /* Institution bar */
-const allBarVals=[5.63,5.68,4.32],payBarVals=[7.33,7.2,3.1];
+const allBarVals=[4.37,5.10,8.05],payBarVals=[4.2,1.7,5.4];
 const instChart=new Chart(document.getElementById('instChart'),{
   type:'bar',
   data:{labels:['BlackRock','State Street','Vanguard'],datasets:[{data:allBarVals,backgroundColor:['#3b82f6','#10b981','#f59e0b'],borderRadius:5,barThickness:26}]},
@@ -398,7 +391,7 @@ function switchBar(mode){
 /* Volume donut */
 const volChart=new Chart(document.getElementById('volChart'),{
   type:'doughnut',
-  data:{labels:['BlackRock','State Street','Vanguard'],datasets:[{data:[203156,92458,27891],backgroundColor:['#3b82f6','#10b981','#f59e0b'],borderWidth:0,hoverOffset:8}]},
+  data:{labels:['BlackRock','State Street','Vanguard'],datasets:[{data:[1011315,556525,308230],backgroundColor:['#3b82f6','#10b981','#f59e0b'],borderWidth:0,hoverOffset:8}]},
   options:{...baseOpts,cutout:'72%',plugins:{...baseOpts.plugins,tooltip:{...TT,callbacks:{label:c=>' '+c.label+': '+c.parsed.toLocaleString()+' votes'}}}}
 });
 
@@ -452,7 +445,7 @@ function setInst(inst){
   document.getElementById('kpi-pay-sub').textContent=PAY_SUB[inst];
 
   /* Progress bars */
-  document.getElementById('bar-votes').style.width=((o.total/323505)*100)+'%';
+  document.getElementById('bar-votes').style.width=((o.total/1876070)*100)+'%';
   document.getElementById('bar-dissent').style.width=o.dissent+'%';
   document.getElementById('bar-climate').style.width=(cv||0)+'%';
   document.getElementById('bar-pay').style.width=(pn||0)+'%';
@@ -475,12 +468,12 @@ function setInst(inst){
   /* Donut */
   if(inst==='All'){
     volChart.data.labels=['BlackRock','State Street','Vanguard'];
-    volChart.data.datasets[0].data=[203156,92458,27891];
+    volChart.data.datasets[0].data=[1011315,556525,308230];
     volChart.data.datasets[0].backgroundColor=['#3b82f6','#10b981','#f59e0b'];
     document.getElementById('donut-title').textContent='Vote volume';
-    document.getElementById('donut-legend').innerHTML='<span class="li"><span class="ld" style="background:#3b82f6"></span>BlackRock 63%</span><span class="li"><span class="ld" style="background:#10b981"></span>State Street 29%</span><span class="li"><span class="ld" style="background:#f59e0b"></span>Vanguard 9%</span>';
+    document.getElementById('donut-legend').innerHTML='<span class="li"><span class="ld" style="background:#3b82f6"></span>BlackRock 54%</span><span class="li"><span class="ld" style="background:#10b981"></span>State Street 30%</span><span class="li"><span class="ld" style="background:#f59e0b"></span>Vanguard 16%</span>';
   } else {
-    var vd={BlackRock:{FOR:3755,AGAINST:13,WITHHOLD:0,ABSTAIN:0},StateStreet:{FOR:86470,AGAINST:4081,WITHHOLD:1105,ABSTAIN:78},Vanguard:{FOR:27099,AGAINST:626,WITHHOLD:166,ABSTAIN:0}}[inst];
+    var vd={BlackRock:{FOR:841163,AGAINST:58358,ABSTAIN:16650,OTHER:89455,WITHHOLD:2583},StateStreet:{FOR:471743,AGAINST:61282,ABSTAIN:11482,WITHHOLD:3583,OTHER:7782},Vanguard:{FOR:283418,AGAINST:13000,WITHHOLD:11782,ABSTAIN:30}}[inst];
     var col=INST_COLOR[inst],al=['ff','99','55','33'];
     var ks=Object.keys(vd).filter(function(k){return vd[k]>0});
     var tot=Object.values(vd).reduce(function(a,b){return a+b},0);
