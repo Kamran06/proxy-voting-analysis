@@ -9,10 +9,10 @@
 
 | Institution | Fund | Votes | Source |
 |---|---|---|---|
-| State Street | State Street Institutional Investment Trust | 91,734 | SEC N-PX 2025 |
+| State Street | State Street Institutional Investment Trust | 92,458 | SEC N-PX 2025 |
 | Vanguard | Vanguard Index Funds | 27,891 | SEC N-PX 2025 |
-| BlackRock | iShares Inc | 4,052 | SEC N-PX 2025 |
-| **Total** | 3 funds, 9,798 companies | **123,677** | EDGAR EFTS API |
+| BlackRock | iShares Inc | 203,156 | SEC N-PX 2025 |
+| **Total** | 3 funds, 9,798 companies | **323,505** | EDGAR EFTS API |
 
 2025 is the **first year** SEC required machine-readable structured XML for N-PX filings, making this dataset uniquely accessible and novel.
 
