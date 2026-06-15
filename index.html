@@ -167,7 +167,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   <div class="kpi card">
     <div class="kpi-label">Dissent rate</div>
     <div class="kpi-value amber" id="kpi-dissent">5.19%</div>
-    <div class="kpi-sub">voted against mgmt recommendation</div>
+    <div class="kpi-sub" id="kpi-dissent-sub">voted against mgmt recommendation (incl. WITHHOLD)</div>
     <div class="kpi-bar-track"><div class="kpi-bar-fill" id="bar-dissent" style="width:5.53%;background:var(--amber)"></div></div>
   </div>
   <div class="kpi card">
@@ -239,7 +239,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 <div class="chart-row model-row" role="region">
   <div class="card">
     <div class="card-title">Logistic regression &mdash; top predictors of dissent</div>
-    <p style="font-size:11px;color:var(--text3);margin-bottom:12px">Green = predicts dissent &nbsp;&middot;&nbsp; Red = predicts alignment</p>
+    <p style="font-size:11px;color:var(--text3);margin-bottom:12px">Green = predicts dissent &nbsp;&middot;&nbsp; Red = predicts alignment &nbsp;&middot;&nbsp; ESG coefficients may be inflated (quasi-separation)</p>
     <div class="chart-wrap" style="height:285px">
       <canvas id="coefChart" role="img" aria-label="Model coefficients"></canvas>
     </div>
@@ -247,15 +247,15 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   <div class="card" style="display:flex;flex-direction:column">
     <div class="card-title">Model performance</div>
     <div class="model-grid">
-      <div class="mkpi"><div class="mkpi-label">ROC-AUC</div><div class="mkpi-val">0.798</div></div>
-      <div class="mkpi"><div class="mkpi-label">Accuracy</div><div class="mkpi-val">95.6%</div></div>
-      <div class="mkpi"><div class="mkpi-label">Train set</div><div class="mkpi-val">98,941</div></div>
+      <div class="mkpi"><div class="mkpi-label">ROC-AUC</div><div class="mkpi-val">0.705</div></div>
+      <div class="mkpi"><div class="mkpi-label">Balanced acc.</div><div class="mkpi-val">66.3%</div></div>
+      <div class="mkpi"><div class="mkpi-label">Total votes</div><div class="mkpi-val">1.88M</div></div>
       <div class="mkpi"><div class="mkpi-label">Features</div><div class="mkpi-val">29</div></div>
     </div>
     <div class="insight">
-      <p>Proposal <em>category</em> dominates prediction. Say-on-pay carries a <span class="hl">-0.984</span> log-odds shift toward alignment &mdash; institutions almost always side with management on exec pay.</p>
-      <p>Expanding to <span class="hl">1.88M votes</span> across 49 filings reveals divergence: Vanguard (<span class="hl">8.05%</span>) is nearly 2&times; BlackRock (<span class="hl">4.37%</span>) and well above State Street (<span class="hl">5.10%</span>). Vanguard World Fund drives elevated Director Elections and Corporate Governance opposition.</p>
-      <p>AUC of <span class="hl">0.798</span> from 29 features suggests voting behaviour is systematic &mdash; and predictable.</p>
+      <p>Proposal <em>category</em> dominates prediction; institutional identity nearly vanishes after controlling for proposal type. Climate (<span class="hl">+6.1</span>) and Human rights (<span class="hl">+5.0</span>) carry the largest log-odds toward dissent &mdash; what is being voted on matters far more than who is voting. Note: ESG coefficients may be inflated (quasi-separation in high-dissent cells).</p>
+      <p>Vanguard's raw <span class="hl">8.05%</span> dissent rate appears <span class="hl">1.84&times;</span> BlackRock's <span class="hl">4.37%</span>. But <span class="hl">47.5%</span> of Vanguard's dissents are WITHHOLD votes, not AGAINST. Stripping WITHHOLD from all three institutions collapses the ratio to <span class="hl">1.03&times;</span> (BR 4.11%, SS 4.46%, VG 4.23%) — apparent divergence, not real divergence.</p>
+      <p>AUC <span class="hl">0.705</span>, balanced accuracy <span class="hl">66.3%</span> on 1.88M votes. Sample note: these are specific fund registrants (iShares Trust, SSIT/SPDR, Vanguard Index/World) — not full fund families.</p>
     </div>
   </div>
 </div>
@@ -307,9 +307,10 @@ const OVERALL={
 };
 const PAY_NUM={All:null,BlackRock:4.2,StateStreet:1.7,Vanguard:5.4};
 const PAY_SUB={All:'select an institution to compare',BlackRock:'say-on-pay against rate (iShares Trust)',StateStreet:'say-on-pay against rate (SSIT + SPDR)',Vanguard:'say-on-pay against rate (Index + World)'};
+const DISSENT_SUB={All:'voted against mgmt recommendation (incl. WITHHOLD as dissent)',BlackRock:'voted against mgmt recommendation',StateStreet:'voted against mgmt recommendation',Vanguard:'raw rate incl. WITHHOLD — ex-WITHHOLD rate: 4.23%'};
 const CLIMATE_VAL={All:91.14,BlackRock:null,StateStreet:91.5,Vanguard:100};
 const CLIMATE_TXT={All:'91.14%',BlackRock:'—',StateStreet:'91.5%',Vanguard:'100%'};
-const CLIMATE_SUB={All:'vs. mgmt on climate proposals',BlackRock:'climate tags rare in iShares Trust XML — not shown',StateStreet:'out of 294 climate proposals',Vanguard:'all 17 climate proposals — against mgmt'};
+const CLIMATE_SUB={All:'State Street + Vanguard only; BlackRock climate unmeasured (iShares XML)',BlackRock:'climate tags rare in iShares Trust XML — not measured',StateStreet:'out of 294 climate proposals',Vanguard:'all 17 climate proposals; 95% CI ≈80–100%'};
 
 const CAT_DATA={
   All:[
@@ -396,11 +397,11 @@ const volChart=new Chart(document.getElementById('volChart'),{
 });
 
 /* Coefficients */
-const cfVals=[0.655,0.366,0.329,0.280,0.250,0.200,-0.150,-0.220,-0.561,-0.984];
+const cfVals=[6.126,5.020,4.371,3.267,1.041,0.787,0.063,-0.333,-0.512,-1.027];
 new Chart(document.getElementById('coefChart'),{
   type:'bar',
   data:{
-    labels:['Director elections','BlackRock','Hum. rights','Climate','DEI','Shareholder rights','Corp. governance','Vanguard','Capital structure','Say-on-pay'],
+    labels:['Climate','Hum. rights','DEI','Shareholder rights','Dir. elections','Corp. governance','Compensation','Say-on-pay','State Street','Capital structure'],
     datasets:[{data:cfVals,backgroundColor:cfVals.map(v=>v>=0?'#10b981':'#f87171'),borderRadius:4,barThickness:16}]
   },
   options:{...baseOpts,indexAxis:'y',
@@ -433,6 +434,7 @@ function setInst(inst){
   counter(document.getElementById('kpi-votes'),o.total,function(v){return Math.round(v).toLocaleString()},750);
   document.getElementById('kpi-votes-sub').textContent=o.sub;
   counter(document.getElementById('kpi-dissent'),o.dissent,function(v){return v.toFixed(2)+'%'},750);
+  document.getElementById('kpi-dissent-sub').textContent=DISSENT_SUB[inst];
 
   var cv=CLIMATE_VAL[inst];
   if(cv!==null){counter(document.getElementById('kpi-climate'),cv,function(v){return v.toFixed(2)+'%'},750)}
